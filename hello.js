@@ -1,38 +1,57 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+/*
+Assessment Requirements
+1. Create a variable that can hold a number of NFT's. What type of variable might this be?
+2. Create an object inside your mintNFT function that will hold the metadata for your NFTs.
+   The metadata values will be passed to the function as parameters. When the NFT is ready,
+   you will store it in the variable you created in step 1
+3. Your listNFTs() function will print all of your NFTs metadata to the console (i.e. console.log("Name: " + someNFT.name))
+4. For good measure, getTotalSupply() should return the number of NFT's you have created
+*/
 
-contract NFTContract {
-    // Create a variable to hold NFT's
-    struct NFT {
-        string name;
-        string eyeColor;
-        string shirtType;
-        string bling;
+// create a variable to hold your NFT's
+const NFTs = [];
+
+// this function will take in some values as parameters, create an
+// NFT object using the parameters passed to it for its metadata,
+// and store it in the variable above.
+function mintNFT (_name, _eyecolor, _shirtType, _bling) {
+  const NFT = {
+    "name": _name,
+    "eye_color": _eyecolor,
+    "shirtType": _shirtType,
+    "bling": _bling
+
     }
+    NFTs.push(NFT);
+    console.log("Minted: "+_name);
 
-    // Array to store NFTs
-    NFT[] public nfts;
 
-    // Function to mint an NFT
-    function mintNFT(string memory _name, string memory _eyeColor, string memory _shirtType, string memory _bling) public {
-        NFT memory newNFT = NFT({
-            name: _name,
-            eyeColor: _eyeColor,
-            shirtType: _shirtType,
-            bling: _bling
-        });
+  }
 
-        nfts.push(newNFT);
-        // Optionally emit an event here if you want to track minting events.
-    }
 
-    // Function to list all NFTs
-    function listNFTs() public view returns (NFT[] memory) {
-        return nfts;
-    }
 
-    // Function to get the total supply of NFTs
-    function getTotalSupply() public view returns (uint256) {
-        return nfts.length;
-    }
+// create a "loop" that will go through an "array" of NFT's
+// and print their metadata with console.log()
+function listNFTs () {
+  for(let i=0;i<NFTs.length;i++){
+    console.log("\nID: "+(i+1));
+    console.log("Name: "+NFTs[i].name);
+    console.log("eyecolor: "+NFTs[i].shirtType);
+    console.log("Bling: "+NFTs[i].bling);
+  }
+
 }
+
+// print the total number of NFTs we have minted to the console
+function getTotalSupply() {
+  console.log("\n"+NFTs.length);
+
+}
+
+// call your functions below this line
+mintNFT("Bob","Blue","Hoodie","Gold Chain");
+mintNFT("Sally","Green","T-Shirt","Diamond Ring");
+mintNFT("Joe","Brown","Button Up","Platinum Watch");
+mintNFT("Jill","Purple","Tank Top","Silver Bracelet");
+listNFTs();
+getTotalSupply();
