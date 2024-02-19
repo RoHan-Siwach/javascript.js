@@ -13,3 +13,6 @@
 - Total NFT Length: Gain insights into calculating the total length of the NFTs.
 
 - "List NFTs" Function: I demonstrate how to call the "list NFTs" function effectively.
+
+
+![Screenshot](Screenshot.png)
